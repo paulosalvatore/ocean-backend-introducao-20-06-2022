@@ -13,7 +13,7 @@ const herois = ["Mulher Maravilha", "Capitã Marvel", "Homem de Ferro"];
 
 // Endpoint Read All - [GET] /herois
 app.get("/herois", function (req, res) {
-  res.send(herois);
+  res.send(herois.filter(Boolean));
 });
 
 // Endpoint Read by ID - [GET] /herois/:id
@@ -48,6 +48,17 @@ app.put("/herois/:id", function (req, res) {
   herois[id - 1] = item;
 
   res.send("Item atualizado com sucesso.");
+});
+
+// Endpoint Delete - [DELETE] /herois/:id
+app.delete("/herois/:id", function (req, res) {
+  // Obtemos o ID pela rota
+  const id = req.params.id;
+
+  // Removemos a posição id - 1 da lista
+  delete herois[id - 1];
+
+  res.send("Item removido com sucesso.");
 });
 
 app.listen(3000, () =>
