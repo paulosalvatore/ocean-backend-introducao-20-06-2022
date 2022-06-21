@@ -16,6 +16,15 @@ app.get("/herois", function (req, res) {
   res.send(herois);
 });
 
+// Endpoint Read by ID - [GET] /herois/:id
+app.get("/herois/:id", function (req, res) {
+  const id = req.params.id;
+
+  const item = herois[id - 1];
+
+  res.send(item);
+});
+
 // Endpoint Create - [POST] /herois
 app.post("/herois", function (req, res) {
   // Acessa o nome do herói no corpo da requisição
